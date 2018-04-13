@@ -1,8 +1,14 @@
-package com.aws;
+package org.java.api.aws.ses;
 
 import java.io.File;
 import java.util.List;
 
+/**
+ * This is the POJO class used by the AWS SES API. All classes and methods in the API use this class for communication.
+ * 
+ * @author Raghuram Challapalli
+ *
+ */
 public class SESEmailMessage {
 		
 	private String to;
@@ -13,6 +19,9 @@ public class SESEmailMessage {
 	private List<byte[]> rawFileList;
 	private List<File> fileList;
 	
+	/**
+	 * This is the POJO class used by the AWS SES API. All classes and methods in the API use this class for communication.
+	 */
 	public SESEmailMessage(){
 		
 	}

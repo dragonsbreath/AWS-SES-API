@@ -1,4 +1,4 @@
-package com.aws;
+package org.java.api.aws.ses;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,6 +17,8 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 
 /**
+ * This class creates a request builder for creating message requests compatible with the AWS SES API.
+ * 
  * @author Raghuram Challapalli
  */
 public class SESRequestBuilder {
@@ -37,7 +39,7 @@ public class SESRequestBuilder {
 	}
 
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @param displayName - Name to be displayed in the "From" section of the email.
@@ -54,7 +56,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
@@ -72,7 +74,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @param displayName - Name to be displayed in the "From" section of the email.
@@ -93,7 +95,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
@@ -115,13 +117,15 @@ public class SESRequestBuilder {
 	}
 		
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @return SendRawEmailRequest object that has all the required information.
 	 * @throws IOException 
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildAWSRawMessage(SESEmailMessage email) throws AddressException, MessagingException, IOException{
 		contentBuilder = new SESContentBuilder();
@@ -138,7 +142,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
@@ -146,6 +150,8 @@ public class SESRequestBuilder {
 	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
 	 * @return SendRawEmailRequest object that has all the required information.
 	 * @throws IOException 
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildAWSRawMessage(SESEmailMessage email, String footerText) throws AddressException, MessagingException, IOException{
 		contentBuilder = new SESContentBuilder();
@@ -162,7 +168,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
@@ -170,7 +176,9 @@ public class SESRequestBuilder {
 	 * @param displayName - Name to be displayed in the "From" section of the email.
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return SendRawEmailRequest object that has all the required information.
-	 * @throws IOException 
+	 * @throws IOException
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildAWSRawMessage(SESEmailMessage email, String displayName, String emailAddress) throws AddressException, MessagingException, IOException{
 		contentBuilder = new SESContentBuilder();
@@ -187,7 +195,7 @@ public class SESRequestBuilder {
 	}	
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
@@ -197,6 +205,8 @@ public class SESRequestBuilder {
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return SendRawEmailRequest object that has all the required information.
 	 * @throws IOException 
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildAWSRawMessage(SESEmailMessage email, String footerText, String displayName, String emailAddress) throws AddressException, MessagingException, IOException{
 		contentBuilder = new SESContentBuilder();
@@ -213,7 +223,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
@@ -222,6 +232,8 @@ public class SESRequestBuilder {
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return SendRawEmailRequest object that has all the required information.
 	 * @throws IOException 
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildCustomAWSRawMessage(SESEmailMessage email, String displayName, String emailAddress) throws AddressException, MessagingException, IOException{
 		if(emailAddress.equals(this.emailAddress))
@@ -242,7 +254,7 @@ public class SESRequestBuilder {
 	}
 	
 	/**
-	 * Creates a properly formatted SESEmailMessage Request object that can be sent using the AWS SES API.
+	 * Creates a properly formatted Email Request object that can be sent using the AWS SES API.
 	 * <p>
 	 * This message should be used if there are any attachments that need to be sent.
 	 * 
@@ -252,6 +264,8 @@ public class SESRequestBuilder {
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return SendRawEmailRequest object that has all the required information.
 	 * @throws IOException 
+	 * @throws AddressException
+	 * @throws MessagingException
 	 */
 	protected SendRawEmailRequest buildCustomAWSRawMessage(SESEmailMessage email, String footerText, String displayName, String emailAddress) throws AddressException, MessagingException, IOException{
 		if(emailAddress.equals(this.emailAddress))

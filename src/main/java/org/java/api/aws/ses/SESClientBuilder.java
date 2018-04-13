@@ -1,4 +1,4 @@
-package com.aws;
+package org.java.api.aws.ses;
 
 import org.apache.log4j.Logger;
 
@@ -12,6 +12,8 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 
 /**
+ * This class creates a builder for the AWS SES Client. 
+ * 
  * @author Raghuram Challapalli
  */
 public class SESClientBuilder {
@@ -29,11 +31,11 @@ public class SESClientBuilder {
 	/**
 	 * Defines the configuration parameters required for the AWS SES Client.
 	 * 
-	 * @param displayName - Name to be displayed in the From section of the email.  
-	 * @param emailAddress - SESEmailMessage Id to be displayed as the from email. This has to be verified with AWS.
-	 * @param region - AWS Server region used to send emails using AWS SES.
-	 * @param accessKeyId - AWS access key Id. This can be obtained from the AWS SES Console.
-	 * @param secretAccessKey - AWS Secret Access Key. This can be obtained from the AWS SES Console.
+	 * @param displayName  Name to be displayed in the From section of the email.  
+	 * @param emailAddress  Email address to be displayed as the from email. This has to be a verified email with AWS.
+	 * @param region  AWS Server region used to send emails using AWS SES.
+	 * @param accessKeyId  AWS access key Id. This can be obtained from the AWS SES Console.
+	 * @param secretAccessKey  AWS Secret Access Key. This can be obtained from the AWS SES Console.
 	 */
 	public SESClientBuilder(String displayName, String emailAddress, Regions region, String accessKeyId, String secretAccessKey){
 		this.defaultDisplayName = displayName;
@@ -54,7 +56,7 @@ public class SESClientBuilder {
 	/**
 	 * Sends an email using the AWS SES API.
 	 * 
-	 * @param email - SESEmailMessage object containing the required information.
+	 * @param email  SESEmailMessage object containing the required information.
 	 * @return true if the email was sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email){
@@ -81,8 +83,8 @@ public class SESClientBuilder {
 	/**
 	 * Sends an email using the AWS SES API.
 	 * 
-	 * @param email - SESEmailMessage object containing the required information.
-	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
+	 * @param email  SESEmailMessage object containing the required information.
+	 * @param footerText  Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String footerText){
@@ -109,9 +111,9 @@ public class SESClientBuilder {
 	/**
 	 * Sends an email using the AWS SES API.
 	 * 
-	 * @param email - SESEmailMessage object containing the required information.
-	 * @param displayName - Name to be displayed in the "From" section of the email.
-	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
+	 * @param email  SESEmailMessage object containing the required information.
+	 * @param displayName  Name to be displayed in the "From" section of the email.
+	 * @param emailAddress  Email address of the sender. This email address has to be a verified email with AWS. This will override the default email address.
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String displayName, String emailAddress){
@@ -152,10 +154,10 @@ public class SESClientBuilder {
 	/**
 	 * Sends an email using the AWS SES API.
 	 * 
-	 * @param email - SESEmailMessage object containing the required information.
-	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
-	 * @param displayName - Name to be displayed in the "From" section of the email.
-	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
+	 * @param email  SESEmailMessage object containing the required information.
+	 * @param footerText  Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
+	 * @param displayName  Name to be displayed in the "From" section of the email.
+	 * @param emailAddress  Email address of the sender. This email address has to be a verified email with AWS. This will override the default email address.
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String footerText, String displayName, String emailAddress){		

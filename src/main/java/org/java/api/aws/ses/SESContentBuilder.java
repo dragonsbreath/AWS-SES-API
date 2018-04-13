@@ -1,4 +1,4 @@
-package com.aws;
+package org.java.api.aws.ses;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -24,6 +25,8 @@ import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 
 /**
+ * This class creates a content builder for creating message objects compatible with the AWS SES API.
+ * 
  * @author Raghuram Challapalli
  */
 public class SESContentBuilder {
@@ -37,6 +40,9 @@ public class SESContentBuilder {
 	private final static String htmlFooter = "</td></tr></table></body></html>";
 	private String footerText = "";
 	
+	/**
+	 * This class creates a content builder for creating message objects compatible with the AWS SES API.
+	 */
 	public SESContentBuilder(){
 		
 	}
@@ -181,6 +187,7 @@ public class SESContentBuilder {
 	 * 
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @return MimeMultipart Object that can be used by the AWS SES API.
+	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email) throws MessagingException{
 		MimeMultipart msg = new MimeMultipart("mixed");
@@ -197,6 +204,7 @@ public class SESContentBuilder {
 	 * @param email - SESEmailMessage object containing the required information.
 	 * @param footerText - Customized footer text that will be added at the end of the message. Should be a properly formatted HTML string.
 	 * @return MimeMultipart Object that can be used by the AWS SES API.
+	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String footerText) throws MessagingException{
 		if(null != footerText)
@@ -216,6 +224,7 @@ public class SESContentBuilder {
 	 * @param displayName - Name to be displayed in the "From" section of the email.
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return MimeMultipart Object that can be used by the AWS SES API.
+	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String displayName, String emailAddress) throws MessagingException{
 		this.createAdditionalFooter(displayName, emailAddress);
@@ -235,6 +244,7 @@ public class SESContentBuilder {
 	 * @param displayName - Name to be displayed in the "From" section of the email.
 	 * @param emailAddress - SESEmailMessage Id of the sender. This email Id has to be verified with AWS. This will override the default email Id.
 	 * @return MimeMultipart Object that can be used by the AWS SES API.
+	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String footerText, String displayName, String emailAddress) throws MessagingException{
 		this.createAdditionalFooter(displayName, emailAddress);
