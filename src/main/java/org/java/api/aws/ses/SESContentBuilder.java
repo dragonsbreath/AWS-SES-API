@@ -190,12 +190,7 @@ public class SESContentBuilder {
 	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email) throws MessagingException{
-		MimeMultipart msg = new MimeMultipart("mixed");
-		MimeBodyPart wrap = new MimeBodyPart(); 
-		wrap.setContent(addHTMLBody(email.getBody()));
-		msg.addBodyPart(wrap);
-		msg = addFileAttachments(msg, email.getFileList());
-		return msg;
+		return buildMimeBody(email, null);
 	}
 	
 	/**
@@ -207,14 +202,7 @@ public class SESContentBuilder {
 	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String footerText) throws MessagingException{
-		if(null != footerText)
-			this.footerText += footerText;
-		MimeMultipart msg = new MimeMultipart("mixed");
-		MimeBodyPart wrap = new MimeBodyPart(); 
-		wrap.setContent(addHTMLBody(email.getBody()));
-		msg.addBodyPart(wrap);
-		msg = addFileAttachments(msg, email.getFileList());
-		return msg;
+		return buildMimeBody(email, footerText, null, null);
 	}
 	
 	/**
@@ -227,13 +215,7 @@ public class SESContentBuilder {
 	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String displayName, String emailAddress) throws MessagingException{
-		this.createAdditionalFooter(displayName, emailAddress);
-		MimeMultipart msg = new MimeMultipart("mixed");
-		MimeBodyPart wrap = new MimeBodyPart(); 
-		wrap.setContent(addHTMLBody(email.getBody()));
-		msg.addBodyPart(wrap);
-		msg = addFileAttachments(msg, email.getFileList());
-		return msg;
+		return buildMimeBody(email, null, displayName, emailAddress);
 	}
 	
 	/**
@@ -247,14 +229,16 @@ public class SESContentBuilder {
 	 * @throws MessagingException
 	 */
 	protected MimeMultipart buildMimeBody(SESEmailMessage email, String footerText, String displayName, String emailAddress) throws MessagingException{
-		this.createAdditionalFooter(displayName, emailAddress);
+		if((null != displayName) && (null != emailAddress))
+			this.createAdditionalFooter(displayName, emailAddress);
 		if(null != footerText)
 			this.footerText += footerText;
 		MimeMultipart msg = new MimeMultipart("mixed");
 		MimeBodyPart wrap = new MimeBodyPart(); 
 		wrap.setContent(addHTMLBody(email.getBody()));
 		msg.addBodyPart(wrap);
-		msg = addFileAttachments(msg, email.getFileList());
+		if((null != email.getFileList()) && (email.getFileList().size()>0))
+			msg = addFileAttachments(msg, email.getFileList());
 		return msg;
 	}
 	

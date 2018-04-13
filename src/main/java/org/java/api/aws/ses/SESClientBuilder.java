@@ -60,7 +60,7 @@ public class SESClientBuilder {
 	 * @return true if the email was sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email){
-		if(email.getFileList().size()>0){
+		if((null != email.getFileList()) && (email.getFileList().size()>0)){
 			try{				
 	            SendRawEmailRequest rawEmailRequest = requestBuilder.buildAWSRawMessage(email, defaultDisplayName, defaultEmailAddress);
 	            client.sendRawEmail(rawEmailRequest);
@@ -88,7 +88,7 @@ public class SESClientBuilder {
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String footerText){
-		if(email.getFileList().size()>0){
+		if((null != email.getFileList()) && (email.getFileList().size()>0)){
 			try{				
 	            SendRawEmailRequest rawEmailRequest = requestBuilder.buildAWSRawMessage(email, footerText,  defaultDisplayName, defaultEmailAddress);
 	            client.sendRawEmail(rawEmailRequest);
@@ -117,7 +117,7 @@ public class SESClientBuilder {
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String displayName, String emailAddress){
-		if(email.getFileList().size()>0){
+		if((null != email.getFileList()) && (email.getFileList().size()>0)){
 			try{				
 	            SendRawEmailRequest rawEmailRequest = requestBuilder.buildAWSRawMessage(email, displayName, emailAddress);
 	            client.sendRawEmail(rawEmailRequest);
@@ -161,7 +161,7 @@ public class SESClientBuilder {
 	 * @return true if the email is sent successfully; false otherwise
 	 */
 	public boolean sendEmail(SESEmailMessage email, String footerText, String displayName, String emailAddress){		
-		if(email.getFileList().size()>0){
+		if((null != email.getFileList()) && (email.getFileList().size()>0)){
 			try{				
 	            SendRawEmailRequest rawEmailRequest = requestBuilder.buildAWSRawMessage(email, footerText, displayName, emailAddress);
 	            client.sendRawEmail(rawEmailRequest);
