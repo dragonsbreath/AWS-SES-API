@@ -1,7 +1,3 @@
-require(['https://buttons.github.io/buttons.js'], function (GitHubButtons) {
-  GitHubButtons.render()
-});
-
 # AWS-SES-API
 A simplified Java Library for sending emails using the Amazon Simple Email Service.
 
