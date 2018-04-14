@@ -1,13 +1,7 @@
 # AWS-SES-API
 A simplified Java Library for sending emails using the Amazon Simple Email Service.
 
-<a class="github-buttons" 
-   href="#dependencies"
-   title="Dependencies"
-   data-icon="octicon-mark-github"
-   data-size="large"
-   data-text="Dependencies"
-   aria-label="{{ aria label }}">Dependencies</a>
+<a class="github-buttons" href="#prerequisites" data-text="Prerequisites">Prerequisites</a> | <a class="github-buttons" href="#dependencies" data-text="Dependencies">Dependencies</a> | <a class="github-buttons" href="#usage" data-text="Usage">Usage</a> | <a class="github-buttons" href="#contributing" data-text="Contributing">Contributing</a>
    
 ## Introduction
 ### What is this API?
@@ -21,10 +15,15 @@ It is a reliable, cost-effective service for businesses of all sizes that use em
 
 Simplified, it is an email service that leverages Amazon's servers to send emails.
 
-### Dependencies
-This project depends on the amazon ses repository. You can add the following maven repository dependency in your pom.xml.
+## Prerequisites
+You will need to have an active AWS account. Official instructions by Amazon can be found [here](https://aws.amazon.com/ses/getting-started/). More detailed instructions can be found in the Wiki [here](https://github.com/dragonsbreath/AWS-SES-API/wiki/Configuring-AWS).
+
+## Dependencies
+### Amazon SES
+This project depends on the Amazon SES repository. You can add the following maven repository dependency in your pom.xml.
 
 ```  
+<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
 <dependency>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-java-sdk-ses</artifactId>
@@ -33,7 +32,7 @@ This project depends on the amazon ses repository. You can add the following mav
 ```
 
 ### Adding this API to your project
-You need to add JitPack to your project as an additional repository. This will enable adding github projects as Maven dependencies.
+You need to add [JitPack](https://jitpack.io/) to your project as an additional repository. This will enable adding github projects as Maven dependencies. You can add other github projects too!
 
 ```
 <repository>
@@ -52,7 +51,7 @@ To add this API as a maven dependency, use the following code:
 </dependency>
 ```
 
-### Usage
+## Usage
 Folowing code sample gives a simple use case for using this API:
 ````
 import java.io.File;
@@ -62,13 +61,16 @@ import com.amazonaws.regions.Regions;
 
 public Class AamazonSES{
     
-    private final String defaultFromEmail = "youremail@example.com";
-    private final String defaultFromName = "Your Name";
-    private final String awsAccessKeyId = "AWS Access Key Id";
-    private final String awsSecretAccessKey = "AWS Secret Access Key";
+    private final String defaultFromEmail = "youremail@example.com"; // This should be an AWS verified email address.
+    private final String defaultFromName = "Your Name"; // Your name. This will be displayed in the "From" section of the email message.
+    private final String awsAccessKeyId = "AWS Access Key Id"; // Needs to be obtained from AWS.
+    private final String awsSecretAccessKey = "AWS Secret Access Key"; // Needs to be obtained from AWS.
+    private final Regions awsRegion = Regions.US_WEST_2; // AWS region used for sending emails from your account.
     
-    SESClientBuilder awsClient = new SESClientBuilder(defaultFromName, defaultFromEmail, Regions.US_EAST_1, awsAccessKeyId, awsSecretAccessKey);	
-	  
+    //This will initialize the AWS Client.
+    SESClientBuilder awsClient = new SESClientBuilder(defaultFromName, defaultFromEmail, awsRegion, awsAccessKeyId, awsSecretAccessKey);		  
+    
+    //Use this method to compose your email message. You can also write your own wrapper class for this method.
     public SESEmailMessage composeMessage(){
         SESEmailMessage message = new SESEmailMessage();
         message.setTo(""); // Comma separated list of emails.
@@ -80,6 +82,7 @@ public Class AamazonSES{
         return message;    
     }
     
+    //This method will send your email message.
     public boolean sendEmail(SESEmailMessage message){
         if(awsClient.sendEmail(message))
           return true;
@@ -115,8 +118,7 @@ public Class AamazonSES{
 
 ````
 
-### Contributing
+## Contributing
 Contributions are always welcome. You can use the issues section to send feature requests. Pull requests are also welcome.
 
-### License
 
