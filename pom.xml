@@ -4,7 +4,7 @@
   <artifactId>aws-ses</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>AWS SES API</name>
-  <description>An API for sending emails using AWS SES.</description>
+  <description>An API for sending emails using AWS SES.</description>  
   <dependencies>
   		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
 		<dependency>
@@ -31,9 +31,50 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 			<scope>compile</scope>
-		</dependency>
-		
-		
+		</dependency>		
 		
   </dependencies>
+	
+	<build>
+	<finalName>AWS SES API</finalName>
+	<plugins>
+	
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration> <!-- Compile java 7 compatible bytecode -->
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      
+      <plugin>  <!-- Create sources.jar -->
+            <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+      </plugin>
+            
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+      </plugin>
+      
+	</plugins>
+	</build>
 </project>

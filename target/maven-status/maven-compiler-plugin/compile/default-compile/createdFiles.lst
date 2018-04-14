@@ -1,0 +1,4 @@
+org\java\api\aws\ses\SESClientBuilder.class
+org\java\api\aws\ses\SESContentBuilder.class
+org\java\api\aws\ses\SESEmailMessage.class
+org\java\api\aws\ses\SESRequestBuilder.class
